@@ -1,0 +1,14 @@
+=== DV4 ===
+Goals:
+- Hunger
+- Thirst
+- Tiredness
+- Bladder
+- Boredom
+Actions:
+- Eat chips
+- Order pizza
+- Drink water
+- Sleep in bed
+- Visit bathroom
+- Play Helldivers 2
