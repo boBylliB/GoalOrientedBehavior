@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Planner
+public class ActionSelector
 {
     public virtual Action chooseAction(List<Action> actions, List<Goal> goals)
     {
@@ -26,6 +26,28 @@ public abstract class Planner
             if (utility < bestUtility)
             {
                 bestUtility = utility;
+                bestAction = action;
+            }
+        }
+
+        return bestAction;
+    }
+}
+
+public class OverallUtility : ActionSelector
+{
+    public override Action chooseAction(List<Action> actions, List<Goal> goals)
+    {
+        // Find the action leading to the lowest discontentment
+        Action bestAction = null;
+        float bestValue = float.PositiveInfinity;
+
+        foreach (Action action in actions)
+        {
+            float value = discontentment(action, goals);
+            if (value < bestValue)
+            {
+                bestValue = value;
                 bestAction = action;
             }
         }

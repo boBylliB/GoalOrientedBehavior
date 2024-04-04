@@ -2,11 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Goal
+public class Goal
 {
+    public string name;
     public float value;
-    protected float change;
 
-    public virtual float getDiscontentment(float newValue) { return newValue * newValue; }
-    public virtual float getChange() { return change; }
+    public float getDiscontentment(float newValue) {
+        return newValue * newValue;
+    }
+}
+
+public class Action
+{
+    public string name;
+    public List<Goal> targetGoals;
+
+    public float getGoalChange(Goal goal) {
+        foreach (Goal target in targetGoals)
+        {
+            if (target.name == goal.name)
+                return target.value;
+        }
+        return 0f;
+    }
 }
