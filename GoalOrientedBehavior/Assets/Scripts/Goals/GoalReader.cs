@@ -28,7 +28,7 @@ public static class GoalReader
         {
             Goal goal = new Goal();
             goal.name = xelem.Get<string>("name");
-            goal.value = xelem.Get("start", 0f);
+            goal.value = xelem.Get("value", 0f);
             return goal;
         }
         return null;

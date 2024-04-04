@@ -1,0 +1,56 @@
+<data>
+	<goal name="Hunger"/>
+	<goal name="Thirst"/>
+	<goal name="Tiredness"/>
+	<goal name="Bladder"/>
+	<goal name="Boredom"/>
+	<action name="eat some chips">
+		<goal name="Hunger" value="-2"/>
+		<goal name="Thirst" value="+1"/>
+		<goal name="Tiredness" value="+2"/>
+		<goal name="Bladder" value="+1"/>
+		<goal name="Boredom" value="-1"/>
+	</action>
+	<action name="order pizza">
+		<goal name="Hunger" value="-3"/>
+		<goal name="Thirst" value="-1"/>
+		<goal name="Tiredness" value="-1"/>
+		<goal name="Bladder" value="+2"/>
+		<goal name="Boredom" value="0"/>
+	</action>
+	<action name="drink a soda">
+		<goal name="Hunger" value="0"/>
+		<goal name="Thirst" value="-3"/>
+		<goal name="Tiredness" value="-1"/>
+		<goal name="Bladder" value="+3"/>
+		<goal name="Boredom" value="-1"/>
+	</action>
+	<action name="sleep in bed">
+		<goal name="Hunger" value="+3"/>
+		<goal name="Thirst" value="+3"/>
+		<goal name="Tiredness" value="-6"/>
+		<goal name="Bladder" value="+2"/>
+		<goal name="Boredom" value="+2"/>
+	</action>
+	<action name="nap on sofa">
+		<goal name="Hunger" value="+2"/>
+		<goal name="Thirst" value="+2"/>
+		<goal name="Tiredness" value="-3"/>
+		<goal name="Bladder" value="+1"/>
+		<goal name="Boredom" value="+1"/>
+	</action>
+	<action name="visit the bathroom">
+		<goal name="Hunger" value="0"/>
+		<goal name="Thirst" value="+1"/>
+		<goal name="Tiredness" value="+1"/>
+		<goal name="Bladder" value="-6"/>
+		<goal name="Boredom" value="+2"/>
+	</action>
+	<action name="play Helldivers 2">
+		<goal name="Hunger" value="+1"/>
+		<goal name="Thirst" value="+1"/>
+		<goal name="Tiredness" value="+1"/>
+		<goal name="Bladder" value="+1"/>
+		<goal name="Boredom" value="-4"/>
+	</action>
+</data>

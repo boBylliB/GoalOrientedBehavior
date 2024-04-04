@@ -7,7 +7,7 @@ public class Goal
     public string name;
     public float value;
 
-    public float getDiscontentment(float newValue) {
+    public float GetDiscontentment(float newValue) {
         return newValue * newValue;
     }
 }
@@ -17,7 +17,7 @@ public class Action
     public string name;
     public List<Goal> targetGoals;
 
-    public float getGoalChange(Goal goal) {
+    public float GetGoalChange(Goal goal) {
         foreach (Goal target in targetGoals)
         {
             if (target.name == goal.name)
