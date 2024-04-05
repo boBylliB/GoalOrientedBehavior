@@ -12,3 +12,22 @@ Actions:
 - Sleep in bed
 - Visit bathroom
 - Play Helldivers 2
+
+=== PR4 ===
+Restaurant Sim
+Goals:
+- Remaining orders
+- Ingredient preparedness
+- Remaining dishes
+Actions:
+- Assemble order
+- Prepare ingredient
+- Wash dishes
+Food types:
+- Crouton Salad (lettuce + (bread -> stove) -> plate)
+- Chicken Salad (lettuce + (chicken -> stove) -> plate)
+- Chicken Sandwich (bread + (chicken -> stove) -> plate)
+Ingredient types:
+- Lettuce (slice)
+- Chicken (slice)
+- Bread (slice)

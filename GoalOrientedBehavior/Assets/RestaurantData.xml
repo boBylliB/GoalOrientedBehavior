@@ -1,0 +1,64 @@
+<data>
+	<!-- Maximum ingredient & dish count: 5 -->
+	<!-- Ingredient and "Dishes" goal values are then equal to 5 - count -->
+	<goal name="Crouton Salad"/>
+	<goal name="Chicken Salad"/>
+	<goal name="Chicken Sandwich"/>
+	<goal name="Chopped Lettuce"/>
+	<goal name="Sliced Bread"/>
+	<goal name="Croutons"/>
+	<goal name="Raw Chicken"/>
+	<goal name="Cooked Chicken"/>
+	<goal name="Dishes"/>
+	<sequence name="make a crouton salad">
+		<criteria goal="Sliced Bread" max="4"/>
+		<criteria goal="Chopped Lettuce" max="4"/>
+		<action name="cook bread" duration="5">
+			<goal name="Bread" value="+1"/>
+			<goal name="Croutons" value="-1"/>
+		</action>
+		<action name="assemble salad" duration="3">
+			<goal name="Lettuce" value="+1"/>
+			<goal name="Croutons" value="+1"/>
+			<goal name="Crouton Salad" value="-1"/>
+		</action>
+	</sequence>
+	<sequence name="make a chicken salad">
+		<criteria goal="Raw Chicken" max="4"/>
+		<criteria goal="Chopped Lettuce" max="4"/>
+		<action name="cook chicken" duration="5">
+			<goal name="Raw Chicken" value="+1"/>
+			<goal name="Cooked Chicken" value="-1"/>
+		</action>
+		<action name="assemble salad" duration="3">
+			<goal name="Lettuce" value="+1"/>
+			<goal name="Cooked Chicken" value="+1"/>
+			<goal name="Chicken Salad" value="-1"/>
+		</action>
+	</sequence>
+	<sequence name="make a chicken sandwich">
+		<criteria goal="Raw Chicken" max="4"/>
+		<criteria goal="Sliced Bread" max="4"/>
+		<action name="cook chicken" duration="5">
+			<goal name="Raw Chicken" value="+1"/>
+			<goal name="Cooked Chicken" value="-1"/>
+		</action>
+		<action name="assemble sandwich" duration="3">
+			<goal name="Sliced Bread" value="+1"/>
+			<goal name="Cooked Chicken" value="+1"/>
+			<goal name="Chicken Sandwich" value="-1"/>
+		</action>
+	</sequence>
+	<action name="chop lettuce" duration="3">
+		<goal name="Chopped Lettuce" value="-1"/>
+	</action>
+	<action name="slice bread" duration="3">
+		<goal name="Sliced Bread" value="-1"/>
+	</action>
+	<action name="cut chicken" duration="3">
+		<goal name="Raw Chicken" value="-1"/>
+	</action>
+	<action name="wash a dish" duration="2">
+		<goal name="Dishes" value="-1"/>
+	</action>
+</data>
