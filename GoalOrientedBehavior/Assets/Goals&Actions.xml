@@ -4,6 +4,13 @@
 	<goal name="Tiredness"/>
 	<goal name="Bladder"/>
 	<goal name="Boredom"/>
+	<action name="tick">
+		<goal name="Hunger" value="+2"/>
+		<goal name="Thirst" value="+4"/>
+		<goal name="Tiredness" value="+2"/>
+		<goal name="Bladder" value="+1"/>
+		<goal name="Boredom" value="+3"/>
+	</action>
 	<action name="eat some chips">
 		<goal name="Hunger" value="-2"/>
 		<goal name="Thirst" value="+1"/>
@@ -15,14 +22,14 @@
 		<goal name="Hunger" value="-3"/>
 		<goal name="Thirst" value="-1"/>
 		<goal name="Tiredness" value="-1"/>
-		<goal name="Bladder" value="+2"/>
+		<goal name="Bladder" value="+1"/>
 		<goal name="Boredom" value="0"/>
 	</action>
 	<action name="drink a soda">
 		<goal name="Hunger" value="0"/>
 		<goal name="Thirst" value="-3"/>
 		<goal name="Tiredness" value="-1"/>
-		<goal name="Bladder" value="+3"/>
+		<goal name="Bladder" value="+2"/>
 		<goal name="Boredom" value="-1"/>
 	</action>
 	<action name="sleep in bed">

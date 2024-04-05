@@ -8,7 +8,7 @@ public class GoalSeeker : MonoBehaviour
 
     public List<Goal> goals;
     public List<Action> actions;
-    public Action changePerTick;
+    public Action changePerTick = null;
     public const float TICK_DELAY_S = 5f;
 
     private OverallUtility actionSelector;
@@ -16,15 +16,18 @@ public class GoalSeeker : MonoBehaviour
     public void Start()
     {
         // Read goals and actions from xml file
-        GoalReader.Parse(sourceFile, goals, actions);
+        GoalReader.Parse(sourceFile, out goals, out actions);
         foreach (Action action in actions)
         {
             if (action.name == "tick")
             {
                 changePerTick = action;
                 actions.Remove(action);
+                break;
             }
         }
+        if (changePerTick == null)
+            throw new MissingReferenceException("Could not find a tick action!");
 
         actionSelector = new OverallUtility();
 

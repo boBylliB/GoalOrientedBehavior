@@ -6,7 +6,7 @@ using UnityEngine;
 
 public static class GoalReader
 {
-    public static void Parse(TextAsset sourceFile, List<Goal> goals, List<Action> actions)
+    public static void Parse(TextAsset sourceFile, out List<Goal> goals, out List<Action> actions)
     {
         XDocument xdoc = XDocument.Parse(sourceFile.text);
         goals = new List<Goal>();
@@ -26,9 +26,11 @@ public static class GoalReader
     {
         if (xelem.Name == "goal")
         {
-            Goal goal = new Goal();
-            goal.name = xelem.Get<string>("name");
-            goal.value = xelem.Get("value", 0f);
+            Goal goal = new Goal
+            {
+                name = xelem.Get<string>("name"),
+                value = xelem.Get("value", 0f)
+            };
             return goal;
         }
         return null;
@@ -38,9 +40,11 @@ public static class GoalReader
     {
         if (xelem.Name == "action")
         {
-            Action action = new Action();
-            action.name = xelem.Get<string>("name");
-            action.targetGoals = new List<Goal>();
+            Action action = new Action
+            {
+                name = xelem.Get<string>("name"),
+                targetGoals = new List<Goal>()
+            };
             foreach (XElement child in xelem.Elements("goal"))
             {
                 Goal childGoal = readGoal(child);
