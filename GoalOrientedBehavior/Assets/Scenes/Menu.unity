@@ -172,7 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 369396873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b6eb3e356b8233418f27bab6603f98f, type: 3}
+  m_Script: {fileID: 11500000, guid: d71ddd8b3adb29a45b6284e27ff90d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &369396876
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 1632606566}
   - component: {fileID: 1632606565}
   m_Layer: 5
-  m_Name: TaskEditor
+  m_Name: BetterGOBs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 369396875}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: StartPR3
+        m_MethodName: StartPR4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 1942555464}
   - component: {fileID: 1942555463}
   m_Layer: 5
-  m_Name: BehaviorTrees
+  m_Name: GOBs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -963,7 +963,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 369396875}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: StartDV3
+        m_MethodName: StartDV4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
