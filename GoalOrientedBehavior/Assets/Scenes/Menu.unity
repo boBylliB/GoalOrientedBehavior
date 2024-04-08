@@ -283,7 +283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Behavior Trees
+  m_Text: Basic GOBs
 --- !u!222 &445145194
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -455,7 +455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Task Editor
+  m_Text: Much Cooler GOBs
 --- !u!222 &532263947
 CanvasRenderer:
   m_ObjectHideFlags: 0
