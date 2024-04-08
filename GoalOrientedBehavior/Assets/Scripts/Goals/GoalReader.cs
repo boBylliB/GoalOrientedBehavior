@@ -131,13 +131,13 @@ public static class GoalReader
             {
                 Goal minimum = new Goal()
                 {
-                    name = xelem.Get<string>("name"),
-                    value = xelem.Get("min", -1f)
+                    name = child.Get<string>("goal"),
+                    value = child.Get("min", -1f)
                 };
                 Goal maximum = new Goal()
                 {
-                    name = xelem.Get<string>("name"),
-                    value = xelem.Get("max", -1f)
+                    name = child.Get<string>("goal"),
+                    value = child.Get("max", -1f)
                 };
                 if (minimum.value >= 0f)
                     seq.criteria.minimums.Add(minimum);

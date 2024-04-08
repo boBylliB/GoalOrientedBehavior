@@ -12,6 +12,10 @@ public class RestaurantSeeker : Kinematic
 
     public Text actionReadout;
     public Text orderReadout;
+    public Toggle autoOrderToggle;
+    public Button croutonSaladButton;
+    public Button chickenSaladButton;
+    public Button chickenSandwichButton;
 
     public List<TimedGoal> goals;
     public int numOrderTypes = 3;
@@ -56,6 +60,18 @@ public class RestaurantSeeker : Kinematic
         for (int idx = 0; idx < goals.Count && idx < numOrderTypes; idx++)
         {
             orderReadout.text += "\n\t" + goals[idx].name + ":\t\t" + goals[idx].value;
+        }
+        if (autoOrderToggle.isOn)
+        {
+            croutonSaladButton.enabled = false;
+            chickenSaladButton.enabled = false;
+            chickenSandwichButton.enabled = false;
+        }
+        else
+        {
+            croutonSaladButton.enabled = true;
+            chickenSaladButton.enabled = true;
+            chickenSandwichButton.enabled = true;
         }
 
         steeringUpdate = new SteeringOutput();
@@ -135,13 +151,34 @@ public class RestaurantSeeker : Kinematic
 
     public void Tick()
     {
+        if (!autoOrderToggle.isOn)
+            return;
+
         // add a new order
         int orderType = Random.Range(0, numOrderTypes);
+        AddOrder(orderType);
+    }
+
+    public void AddOrder(int orderType)
+    {
         goals[orderType].value++;
         Debug.Log($"New order: {goals[orderType].name}");
 
         // print results
         PrintGoals();
+    }
+
+    public void CroutonSaladButton()
+    {
+        AddOrder(0);
+    }
+    public void ChickenSaladButton()
+    {
+        AddOrder(1);
+    }
+    public void ChickenSandwichButton()
+    {
+        AddOrder(2);
     }
 
     // Using the same print format as https://github.com/bslease/GOB/blob/master/GOB%20Project/Assets/GoalSeeker.cs

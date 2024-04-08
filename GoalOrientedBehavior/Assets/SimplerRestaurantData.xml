@@ -1,9 +1,9 @@
 <data>
 	<!-- Maximum ingredient & dish count: 5 -->
 	<!-- Ingredient and "Dishes" goal values are then equal to 5 - count -->
-	<goal name="Crouton Salad" importance="5"/>
-	<goal name="Chicken Salad" importance="5"/>
-	<goal name="Chicken Sandwich" importance="5"/>
+	<goal name="Crouton Salad" importance="20"/>
+	<goal name="Chicken Salad" importance="20"/>
+	<goal name="Chicken Sandwich" importance="20"/>
 	<goal name="Lettuce"/>
 	<goal name="Bread"/>
 	<goal name="Croutons" value="5"/>

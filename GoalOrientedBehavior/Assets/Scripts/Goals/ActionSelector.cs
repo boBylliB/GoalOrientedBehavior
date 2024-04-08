@@ -128,6 +128,9 @@ public class SequenceSelector
 
         foreach (ActionSequence action in actions)
         {
+            List<Goal> baseGoals = new List<Goal>();
+            baseGoals.AddRange(goals);
+            if (!action.criteria.Check(baseGoals)) continue;
             float value = Discontentment(action, goals);
             if (value < bestValue)
             {
