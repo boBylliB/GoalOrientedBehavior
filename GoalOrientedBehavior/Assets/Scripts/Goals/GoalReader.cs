@@ -9,13 +9,30 @@ public static class GoalReader
     public static void Parse(TextAsset sourceFile, out List<Goal> goals, out List<Action> actions)
     {
         List<ActionSequence> sequences = new List<ActionSequence>();
+        List<TimedGoal> timedGoals = new List<TimedGoal>();
+        List<TimedAction> timedActions = new List<TimedAction>();
+        Parse(sourceFile, out timedGoals, out timedActions, out sequences);
+        goals = new List<Goal>();
+        actions = new List<Action>();
+        foreach (TimedGoal goal in timedGoals)
+        {
+            goals.Add(goal);
+        }
+        foreach (TimedAction action in timedActions)
+        {
+            actions.Add(action);
+        }
+    }
+    public static void Parse(TextAsset sourceFile, out List<TimedGoal> goals, out List<TimedAction> actions)
+    {
+        List<ActionSequence> sequences = new List<ActionSequence>();
         Parse(sourceFile, out goals, out actions, out sequences);
     }
-    public static void Parse(TextAsset sourceFile, out List<Goal> goals, out List<ActionSequence> actionSequences)
+    public static void Parse(TextAsset sourceFile, out List<TimedGoal> goals, out List<ActionSequence> actionSequences)
     {
-        List<Action> actions = new List<Action>();
+        List<TimedAction> actions = new List<TimedAction>();
         Parse(sourceFile, out goals, out actions, out actionSequences);
-        foreach (Action action in actions)
+        foreach (TimedAction action in actions)
         {
             ActionSequence seq = new ActionSequence
             {
@@ -27,20 +44,20 @@ public static class GoalReader
                     minimums = new List<Goal>()
                 }
             };
-            seq.actions.Add((TimedAction)action);
+            seq.actions.Add(action);
             actionSequences.Add(seq);
         }
     }
-    public static void Parse(TextAsset sourceFile, out List<Goal> goals, out List<Action> actions, out List<ActionSequence> actionSequences)
+    public static void Parse(TextAsset sourceFile, out List<TimedGoal> goals, out List<TimedAction> actions, out List<ActionSequence> actionSequences)
     {
         XDocument xdoc = XDocument.Parse(sourceFile.text);
-        goals = new List<Goal>();
-        actions = new List<Action>();
+        goals = new List<TimedGoal>();
+        actions = new List<TimedAction>();
         actionSequences = new List<ActionSequence>();
         foreach (XElement xelem in xdoc.Root.Elements())
         {
-            Goal newGoal = readGoal(xelem);
-            Action newAction = readAction(xelem);
+            TimedGoal newGoal = readGoal(xelem);
+            TimedAction newAction = readAction(xelem);
             ActionSequence newActionSequence = readSequence(xelem);
             if (newGoal != null)
                 goals.Add(newGoal);
@@ -51,38 +68,35 @@ public static class GoalReader
         }
     }
 
-    private static Goal readGoal(XElement xelem)
+    private static TimedGoal readGoal(XElement xelem)
     {
         if (xelem.Name == "goal")
         {
-            Goal goal = new Goal
+            TimedGoal goal = new TimedGoal
             {
                 name = xelem.Get<string>("name"),
-                value = xelem.Get("value", 0f)
+                value = xelem.Get("value", 0f),
+                importance = xelem.Get("importance", 1f),
+                changeOverTime = xelem.Get("tick", 0f)
             };
             return goal;
         }
         return null;
     }
 
-    private static Action readAction(XElement xelem)
+    private static TimedAction readAction(XElement xelem)
     {
         if (xelem.Name == "action")
         {
-            Action action;
-            if (xelem.Get("duration", -1f) >= 0f)
+            TimedAction action = new TimedAction
             {
-                action = new TimedAction() { duration = xelem.Get("duration", 0f) };
-            }
-            else
-            {
-                action = new Action();
-            }
-            action.name = xelem.Get<string>("name");
-            action.targetGoals = new List<Goal>();
+                name = xelem.Get<string>("name"),
+                targetGoals = new List<Goal>(),
+                duration = xelem.Get("duration", 0f)
+            };
             foreach (XElement child in xelem.Elements("goal"))
             {
-                Goal childGoal = readGoal(child);
+                TimedGoal childGoal = readGoal(child);
                 if (childGoal != null)
                     action.targetGoals.Add(childGoal);
             }

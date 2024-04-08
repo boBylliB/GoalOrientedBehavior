@@ -6,9 +6,10 @@ public class Goal
 {
     public string name;
     public float value;
+    public float importance;
 
     public virtual float GetDiscontentment(float newValue) {
-        return newValue * newValue;
+        return importance * newValue * newValue;
     }
 }
 public class TimedGoal : Goal
@@ -71,20 +72,22 @@ public class ActionSequence
 
         foreach (Goal goal in goals)
         {
-            foreach (TimedAction action in actions)
+            if (criteriaMet)
             {
-                if (criteriaMet)
+                float change = 0f;
+                foreach (TimedAction action in actions)
                 {
-                    float change = action.GetGoalChange(goal);
-                    if (goal.value + change > maxVal)
-                        change = maxVal - goal.value;
-                    else if (goal.value + change < minVal)
-                        change = minVal - goal.value;
-                    changes.Add(change);
+                    change += action.GetGoalChange(goal);
+                    //Debug.Log("Passing " + goal.name + " to " + action.name + " got a change of " + change);
                 }
-                else
-                    changes.Add(minVal);
+                //if (goal.value + change > maxVal)
+                //    change = maxVal - goal.value;
+                //else if (goal.value + change < minVal)
+                //    change = minVal - goal.value;
+                changes.Add(change);
             }
+            else
+                changes.Add(0f);
         }
         return changes;
     }

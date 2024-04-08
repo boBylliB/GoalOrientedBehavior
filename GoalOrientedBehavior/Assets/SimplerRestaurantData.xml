@@ -1,0 +1,72 @@
+<data>
+	<!-- Maximum ingredient & dish count: 5 -->
+	<!-- Ingredient and "Dishes" goal values are then equal to 5 - count -->
+	<goal name="Crouton Salad" importance="5"/>
+	<goal name="Chicken Salad" importance="5"/>
+	<goal name="Chicken Sandwich" importance="5"/>
+	<goal name="Lettuce"/>
+	<goal name="Bread"/>
+	<goal name="Croutons" value="5"/>
+	<goal name="Raw Chicken"/>
+	<goal name="Cooked Chicken" value="5"/>
+	<goal name="Dishes"/>
+	<sequence name="make a crouton salad">
+		<criteria goal="Lettuce" max="4"/>
+		<criteria goal="Croutons" max="4"/>
+		<criteria goal="Dishes" max="4"/>
+		<action name="assemble crouton salad" duration="1">
+			<goal name="Dishes" value="+1"/>
+			<goal name="Lettuce" value="+1"/>
+			<goal name="Croutons" value="+1"/>
+			<goal name="Crouton Salad" value="-1"/>
+		</action>
+	</sequence>
+	<sequence name="make a chicken salad">
+		<criteria goal="Cooked Chicken" max="4"/>
+		<criteria goal="Lettuce" max="4"/>
+		<criteria goal="Dishes" max="4"/>
+		<action name="assemble chicken salad" duration="1">
+			<goal name="Dishes" value="+1"/>
+			<goal name="Lettuce" value="+1"/>
+			<goal name="Cooked Chicken" value="+1"/>
+			<goal name="Chicken Salad" value="-1"/>
+		</action>
+	</sequence>
+	<sequence name="make a chicken sandwich">
+		<criteria goal="Cooked Chicken" max="4"/>
+		<criteria goal="Bread" max="4"/>
+		<criteria goal="Dishes" max="4"/>
+		<action name="assemble chicken sandwich" duration="1">
+			<goal name="Dishes" value="+1"/>
+			<goal name="Bread" value="+1"/>
+			<goal name="Cooked Chicken" value="+1"/>
+			<goal name="Chicken Sandwich" value="-1"/>
+		</action>
+	</sequence>
+	<action name="chop lettuce" duration="1">
+		<goal name="Lettuce" value="-1"/>
+	</action>
+	<action name="slice bread" duration="1">
+		<goal name="Bread" value="-1"/>
+	</action>
+	<action name="cut chicken" duration="1">
+		<goal name="Raw Chicken" value="-1"/>
+	</action>
+	<action name="wash a dish" duration="1">
+		<goal name="Dishes" value="-1"/>
+	</action>
+	<sequence name="prep croutons">
+		<criteria goal="Bread" max="4"/>
+		<action name="cook croutons" duration="3">
+			<goal name="Bread" value="+1"/>
+			<goal name="Croutons" value="-1"/>
+		</action>
+	</sequence>
+	<sequence name="prep chicken">
+		<criteria goal="Raw Chicken" max="4"/>
+		<action name="cook chicken" duration="3">
+			<goal name="Raw Chicken" value="+1"/>
+			<goal name="Cooked Chicken" value="-1"/>
+		</action>
+	</sequence>
+</data>

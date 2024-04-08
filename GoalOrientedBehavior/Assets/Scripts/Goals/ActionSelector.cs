@@ -149,10 +149,12 @@ public class SequenceSelector
         List<float> changes = action.GetGoalChanges(goals);
         for (int idx = 0; idx < goals.Count; idx++)
         {
-            float value = 0f;
             TimedGoal goal = goals[idx];
+            float value = goal.value;
             // Calculate the change due to time alone
             value += action.GetDuration() * goal.changeOverTime;
+            // Calculate the impact of the action
+            value += changes[idx];
             // Clamp the post-action value to the sequence min and max
             value = Mathf.Clamp(value, action.minVal, action.maxVal);
 

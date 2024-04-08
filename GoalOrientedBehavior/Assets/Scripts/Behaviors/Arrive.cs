@@ -12,10 +12,10 @@ public class Arrive : SteeringBehavior
     float maxSpeed = 10f;
 
     // the radius for arriving at the target
-    float targetRadius = 1.5f;
+    public float targetRadius = 1.5f;
 
     // the radius for beginning to slow down
-    float slowRadius = 3f;
+    public float slowRadius = 3f;
 
     // the time over which to achieve target speed
     float timeToTarget = 0.1f;
